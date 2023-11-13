@@ -1,52 +1,65 @@
-class stack:
+class Stack:
     def __init__(self, size):
-        self.arr = [None] * size
-        self.top = -1
+        self.stack = [None] * size #creates a list for the size entered in the line 40
+        self.top = -1 #initial top value of the stack
         self.size = size
 
-    def display(self):
-        print(self.arr)
+    def isEmpty(self):
+        if self.top == -1:
+            return True
+        return False
 
-    def push(self, value):
-        if self.top == self.size -1:
-            print("Stack is full")
+    def isFull(self):
+        if self.top == self.size - 1:
+            return True
+        return False
+
+    def push(self, data):
+        if self.isFull():
+            print("Stack overflow")
         else:
+            print(f"The data {data} is pushed")
             self.top = self.top + 1
-            self.arr[self.top] = value
+            self.stack[self.top] = data
 
     def pop(self):
-        if self.top == -1:
-            print("Stack is empty")
+        if self.isEmpty():
+            print("Stack underflow")
         else:
-            self.arr[self.top] = None
+            self.stack[self.top] = None
             self.top = self.top - 1
+            print(f"The data {self.stack[self.top]} is popped")
 
     def peek(self):
-        print(self.arr[self.top])
+        print(f"The value at the top is {self.stack[self.top]}")
+
+    def display(self):
+        print(self.stack)
 
 
 size = int(input("Enter the size of the stack: "))
-Stack = stack(size)
-print("Menu:")
-print("1)Push an element")
-print("2)Display the stack")
-print("3)Pop an element")
-print("4)Peek")
+stack = Stack(size)
+print("Menu")
+print("1)Push")
+print("2)Pop")
+print("3)Peek")
+print("4)Display")
 print("5)Quit")
 while True:
-    inp = int(input("\nEnter your choice: "))
-    match inp:
+    choice = int(input("\nEnter you choice: "))
+    #match case is only supported in Python 3.10 or later
+    match choice:
         case 1:
-            val = int(input("Enter a value to push: "))
-            Stack.push(val)
+            data = int(input("Enter the data to push: "))
+            stack.push(data)
         case 2:
-            Stack.display()
+            stack.pop()
         case 3:
-            Stack.pop()
-        case 5:
-            print("Quitting")
-            quit()
+            stack.peek()
         case 4:
-            Stack.peek()
+            stack.display()
+        case 5:
+            print("Quitting...")
+            quit()
         case _:
-            print("Enter a valid option")
+            print("Enter a valid choice")
