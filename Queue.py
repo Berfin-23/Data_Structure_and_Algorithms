@@ -1,6 +1,6 @@
 class Queue:
     def __init__(self, size):
-        self.queue = [None] * size #Creates a list based in size entered in line 37
+        self.queue = [None] * size #Creates a list based in size entered in line 29
         #initial values
         self.front = 0
         self.rear = 0
